@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculate heat-floor system</title>
+    <!--<link rel="stylesheet" th:href="@{/styles.css}" />-->
+</head>
+
+<body>
+
+<form method="POST" th:action="@{/orders}" th:object="${order}">
+    <h1>Order your taco creations!</h1>
+
+    <img th:src="@{/images/nexans1.jpg}"/>
+    <a th:href="@{/calculate}" id="another">Calculate another system</a><br/>
+
+    <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        Please correct the problems below and resubmit.
+        </span>
+    </div>
+
+    <h3>Deliver my system to...</h3>
+    <label for="name">Name: </label>
+    <input type="text" th:field="*{name}"/>
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}">Name Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+    <label for="street">Street address: </label>
+    <input type="text" th:field="*{street}"/>
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}">Street Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+    <label for="city">City: </label>
+    <input type="text" th:field="*{city}"/>
+    <!-- end::allButValidation[] -->
+    <span class="validationError"
+          th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}">City Error</span>
+    <!-- tag::allButValidation[] -->
+    <br/>
+
+
+    <input type="submit" value="Submit order"/>
+</form>
+
+</body>
+</html>
